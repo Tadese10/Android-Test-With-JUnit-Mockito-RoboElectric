@@ -5,14 +5,21 @@ import com.psdemo.todo.add.AddViewModel
 import com.psdemo.todo.data.TodoRepository
 import junit.framework.Assert.assertEquals
 import junit.framework.Assert.assertNull
+import org.junit.Rule
 import org.junit.Test
+import org.mockito.Mockito
+import org.mockito.junit.MockitoJUnit
+import org.mockito.junit.VerificationCollector
 
 class AddViewModelTest {
+
+    @get:Rule
+    val collector : VerificationCollector? = MockitoJUnit.collector()
 
     @Test
     fun test_saveWithTitleWithoutDate(){
         //Arrange
-        var repository: TodoRepository = mock()
+        var repository: TodoRepository = mock(verboseLogging = true)
         var model = AddViewModel(repository)
         val actualTitle = "Test todo"
         model.todo.title = actualTitle
@@ -23,6 +30,12 @@ class AddViewModelTest {
 
         assertNull(actual)
 
+        verify(repository).insert(any())
+//        verify(repository).insert(
+//            argThat{
+//                created == System.currentTimeMillis()
+//            }
+//        )
         verify(repository).insert(
             argThat{
                 title == actualTitle && dueDate == null

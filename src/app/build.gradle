@@ -15,6 +15,11 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -41,10 +46,10 @@ dependencies {
     //testImplementation 'org.mockito:mockito-core:2.21.0'
     testImplementation 'org.mockito:mockito-inline:2.23.0'
     testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0' //It allows to use some wrappers in a more kotlin friendly way
-    testImplementation 'androidx.arch.core:core-testing:2.1.0'
-    testImplementation 'androidx.test:core-ktx:1.2.0'
-    testImplementation 'androidx.test.ext:junit-ktx:1.1.1'
-    testImplementation 'org.roboelectric:roboelectric:4.3.1'
+    testImplementation 'androidx.arch.core:core-testing:2.1.0'//Read more
+    testImplementation 'androidx.test:core-ktx:1.2.0'// Read more
+    testImplementation 'androidx.test.ext:junit-ktx:1.1.1'//Read more
+    testImplementation 'org.robolectric:robolectric:4.3.1' //This is added cox our machine JVM can simulate Android Operating System
     testImplementation 'com.jraska.livedata:testing-ktx:1.1.0'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
